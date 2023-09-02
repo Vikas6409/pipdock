@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build Docker Image from Dockerfile') {
+            steps {
+                git branch: 'sam', url: 'https://github.com/Vikas6409/pipdock.git'
+                script {
+                    // Build the Docker image with a tag
+                    sh 'docker build -t stuapp:latest .'
+                }
+            }
+        }
+        stage('Run Container from Image') {
+            steps {
+                // Run a container from the Docker image and assign a name to it
+                sh 'docker run -d -p 8081:8080 --name stu-container stuapp:latest'
+            }
+        }
+    }
+}
