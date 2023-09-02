@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build Docker Image from Dockerfile') {
             steps {
-                git branch: 'sam', url: 'https://github.com/Vikas6409/pipdock.git'
+                git branch: 'main', url: 'https://github.com/Vikas6409/pipdock.git'
                 script {
                     // Build the Docker image with a tag
                     sh 'docker build -t stuapp:latest .'
